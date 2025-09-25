@@ -66,11 +66,13 @@ export default function SeatSelectionPage() {
         <input
           type="date"
           className="form-control w-auto"
+           style={{ color: "black", backgroundColor: "#bcddf4ff" }}
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
         />
         <select
           className="form-select w-auto"
+           style={{ color: "black", backgroundColor: "#ead2d2ff" }}
           value={selectedTime}
           onChange={(e) => setSelectedTime(e.target.value)}
         >

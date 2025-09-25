@@ -9,38 +9,30 @@ const Carousel = () => {
 
         {/* Slide 1 */}
         <div className="carousel-item active" data-bs-interval="2000">
-          <img src="/assets/banner/banner2.png" className="d-block w-100" alt="Banner 1" />
+          <img src="/assets/banner/banner1.png" className="d-block w-100" alt="Banner 1" />
         </div>
 
-        {/* Slide 2 */}
-        {/* <div className="carousel-item" data-bs-interval="2000">
-          <img src="/assets/banner/banner2.png" className="d-block w-100" alt="Banner 2" />
-        </div> */}
 
-        {/* Slide 3 */}
+        {/* Slide 2*/}
         <div className="carousel-item" data-bs-interval="2000">
-          <img src="/assets/banner/banner3.jpg" className="d-block w-100" alt="Banner 3" />
+          <img src="/assets/banner/banner2.jpg" className="d-block w-100" alt="Banner 3" />
         </div>
 
-        {/* Slide 4 */}
+        {/* Slide 3*/}
         <div className="carousel-item" data-bs-interval="2000">
-          <img src="/assets/banner/banner4.avif" className="d-block w-100" alt="Banner 4" />
+          <img src="/assets/banner/banner3.png" className="d-block w-100" alt="Banner 4" />
         </div>
 
-        {/* Slide 5 */}
+        {/* Slide 4*/}
         <div className="carousel-item" data-bs-interval="2000">
-          <img src="/assets/banner/banner5.png" className="d-block w-100" alt="Banner 5" />
+          <img src="/assets/banner/banner4.avif" className="d-block w-100" alt="Banner 5" />
         </div>
 
-        {/* Slide 6 */}
+        {/* Slide 5*/}
         <div className="carousel-item" data-bs-interval="2000">
-          <img src="/assets/banner/banner6.avif" className="d-block w-100" alt="Banner 6" />
+          <img src="/assets/banner/banner5.avif" className="d-block w-100" alt="Banner 6" />
         </div>
 
-        {/* Slide 7 */}
-        <div className="carousel-item" data-bs-interval="2000">
-          <img src="/assets/banner/banner7.avif" className="d-block w-100" alt="Banner 7" />
-        </div>
 
       </div>
 
