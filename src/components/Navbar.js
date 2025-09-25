@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaSearch, FaSun, FaMoon, FaChair } from "react-icons/fa";
+import { FaSearch, FaSun, FaMoon, FaChair, FaBars } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const Navbar = ({ darkMode, toggleDarkMode }) => {
-  // Define links for frontend flow
   const links = [
     { name: "Home", path: "/" },
     { name: "Movies", path: "/movies" },
@@ -16,14 +15,9 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
   return (
     <nav
       className="navbar navbar-expand-lg shadow-sm py-2 position-relative"
-      style={{
-        background: "linear-gradient(90deg, #e3e2f0ff, #779faeff, #24243e)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      style={{ background: "linear-gradient(90deg, #e3e2f0ff, #779faeff, #24243e)" }}
     >
-      {/* Dark overlay */}
+      {/* Overlay */}
       <div
         style={{
           position: "absolute",
@@ -37,50 +31,36 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       ></div>
 
       <div
-        className="container position-relative d-flex align-items-center justify-content-between"
+        className="container position-relative d-flex align-items-center justify-content-between flex-wrap"
         style={{ zIndex: 2 }}
       >
         {/* Logo */}
-        <Link className="navbar-brand fw-bold text-white" to="/">
-          <img src="/assets/logo.png" alt="CineLock" style={{ width: "160px" }} />
+        <Link className="navbar-brand fw-bold text-white" to="/" style={{ maxWidth: "160px" }}>
+          <img src="/assets/logo.png" alt="CineLock" style={{ width: "100%", height: "auto" }} />
         </Link>
 
-        {/* Search Bar */}
-        <div className="flex-grow-1 mx-3 d-none d-lg-block">
-          <div className="position-relative w-100">
-            <FaSearch
-              className="position-absolute text-secondary"
-              style={{
-                left: "16px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                fontSize: "18px",
-              }}
-            />
-            <input
-              type="text"
-              placeholder="Search movies..."
-              className="form-control ps-5 pe-3 shadow-sm"
-              style={{
-                borderRadius: "25px",
-                height: "45px",
-                fontSize: "15px",
-                border: "none",
-                backgroundColor: "rgba(255, 255, 255, 0.94)",
-                color: "#000",
-              }}
-            />
-          </div>
-        </div>
+        {/* Hamburger */}
+        <button
+          className="navbar-toggler border-0 text-white mt-2"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <FaBars />
+        </button>
 
-        {/* Navbar Links */}
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto align-items-center">
+        {/* Navbar Links + Search */}
+        <div className="collapse navbar-collapse mt-2 mt-lg-0" id="navbarNav">
+          <ul className="navbar-nav ms-auto align-items-center text-center">
             {links.map((link) => (
-              <li className="nav-item" key={link.name}>
+              <li className="nav-item my-1 my-lg-0" key={link.name}>
                 <Link
-                  className="nav-link text-white fw-bold d-flex align-items-center px-3"
+                  className="nav-link text-white fw-bold d-flex align-items-center justify-content-center px-3"
                   to={link.path}
+                  style={{ whiteSpace: "nowrap" }}
                 >
                   {link.icon && link.icon}
                   {link.name}
@@ -88,10 +68,34 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
               </li>
             ))}
           </ul>
+
+          {/* Search Bar */}
+          <div className="d-none d-lg-block ms-3">
+            <div className="position-relative">
+              <FaSearch
+                className="position-absolute text-secondary"
+                style={{ left: "10px", top: "50%", transform: "translateY(-50%)", fontSize: "18px" }}
+              />
+              <input
+                type="text"
+                placeholder="Search movies..."
+                className="form-control ps-5 pe-3 shadow-sm"
+                style={{
+                  borderRadius: "25px",
+                  height: "40px",
+                  fontSize: "14px",
+                  border: "none",
+                  backgroundColor: "rgba(255, 255, 255, 0.94)",
+                  color: "#000",
+                  minWidth: "180px",
+                }}
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Right Side: Dark Mode */}
-        <div className="d-flex align-items-center ms-3">
+        {/* Dark Mode Button */}
+        <div className="d-flex align-items-center ms-3 mt-2 mt-lg-0">
           <button
             className="btn btn-outline-light rounded-circle d-flex align-items-center justify-content-center"
             style={{ width: "40px", height: "40px", transition: "0.3s" }}
