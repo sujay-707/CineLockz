@@ -8,7 +8,7 @@ const SplashScreen = ({ onComplete }) => {
 
   return (
     <div style={styles.splashScreen}>
-      <img src="/assets/logo.png" alt="BookMyShow Logo" style={styles.logo} />
+      <img src="/assets/logo.png" alt="Cinelock Logo" style={styles.logo} />
     </div>
   );
 };
