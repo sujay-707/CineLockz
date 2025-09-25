@@ -1,0 +1,51 @@
+.seat-simulator-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Seat wrapper: image + label + unlock */
+.seat-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 6px;
+}
+
+/* Seat image */
+.seat-image {
+  width: 50px;
+  height: 70px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.seat-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #00000088;
+}
+
+.seat-image.unlocked {
+  filter: grayscale(80%);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Seat number label */
+.seat-label {
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-top: 4px;
+  color: #000;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Unlock button */
+.unlock-btn {
+  font-size: 0.75rem;
+  margin-top: 4px;
+  width: 100%;
+}
