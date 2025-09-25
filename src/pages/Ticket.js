@@ -9,13 +9,9 @@ export default function Ticket() {
   const navigate = useNavigate();
   const ticketRef = useRef();
 
-  const ticket = location.state?.ticket;
-  const movie = location.state?.movie;
+  const { ticket, movie } = location.state || {};
 
-  const seats = ticket?.seats || [];
-  const totalPrice = ticket?.totalPrice || 0;
-
-  if (!movie || seats.length === 0 || !ticket) {
+  if (!ticket || !movie || !ticket.seats?.length) {
     return (
       <div className="container text-center mt-5">
         <h3>Invalid Ticket Details</h3>
@@ -49,10 +45,10 @@ export default function Ticket() {
         <p><strong>Movie:</strong> {movie.name}</p>
         <p><strong>Date:</strong> {ticket.date}</p>
         <p><strong>Time:</strong> {ticket.time}</p>
-        <p><strong>Seats:</strong> {seats.join(", ")}</p>
-        <p><strong>Total Price:</strong> ₹{totalPrice}</p>
+        <p><strong>Seats:</strong> {ticket.seats.join(", ")}</p>
+        <p><strong>Total Price:</strong> ₹{ticket.totalPrice}</p>
 
-        {seats.map((seat, index) => (
+        {ticket.seats.map((seat, index) => (
           <div key={seat} className="mb-3">
             <QRCodeCanvas value={ticket.qrCodes[index]} size={150} />
             <p className="mt-2"><strong>Code:</strong> {ticket.qrCodes[index]}</p>

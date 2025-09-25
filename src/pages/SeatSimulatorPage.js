@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./SeatSimulatorPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -10,30 +9,22 @@ export default function SeatSimulatorPage() {
     { type: "Silver", rows: ["D", "F"], price: 150, img: "/assets/seats/red-seat.png" },
   ];
 
-  const seatNumbers = [1,2,3,4,5,6,7,8,9,10]; // matches selection page
+  const seatNumbers = [1,2,3,4,5,6,7,8,9,10];
   const [qrCodeInput, setQrCodeInput] = useState("");
   const [unlockedSeats, setUnlockedSeats] = useState([]);
   const [message, setMessage] = useState("");
 
-  const handleUnlock = async (seat) => {
-    if (!qrCodeInput) {
+  const handleUnlock = (seat) => {
+    if (!qrCodeInput.trim()) {
       setMessage("❌ Please enter QR code first!");
       return;
     }
 
-    try {
-      await axios.post("http://localhost:5000/api/tickets/validate", {
-        qrCode: qrCodeInput,
-        seat: seat,
-      });
-
-      if (!unlockedSeats.includes(seat)) {
-        setUnlockedSeats([...unlockedSeats, seat]);
-      }
-
-      setMessage(`✅ Seat ${seat} unlocked successfully!`);
-    } catch (err) {
-      setMessage(err.response?.data?.message || "❌ Error unlocking seat");
+    if (!unlockedSeats.includes(seat)) {
+      setUnlockedSeats([...unlockedSeats, seat]);
+      setMessage(`✅ Seat ${seat} unlocked successfully with code "${qrCodeInput}"!`);
+    } else {
+      setMessage(`ℹ️ Seat ${seat} is already unlocked.`);
     }
   };
 
@@ -58,26 +49,24 @@ export default function SeatSimulatorPage() {
       {seatCategories.map((category) => (
         <div key={category.type} className="mb-4">
           <h5 className="text-center mb-2">{category.type} Seats (₹{category.price})</h5>
-          <div className="d-flex justify-content-center flex-wrap">
+          <div className="d-flex justify-content-center flex-wrap gap-3">
             {category.rows.map((row) =>
               seatNumbers.map((num) => {
                 const seat = `${row}${num}`;
                 const isUnlocked = unlockedSeats.includes(seat);
 
                 return (
-                  <div key={seat} className="seat-wrapper">
+                  <div key={seat} className="text-center">
                     <div
                       className={`seat-image ${isUnlocked ? "unlocked" : ""}`}
-                      style={{
-                        backgroundImage: `url(${category.img})`,
-                      }}
+                      style={{ backgroundImage: `url(${category.img})` }}
                       title={seat}
                     ></div>
                     <div className="seat-label">{seat}</div>
 
                     {!isUnlocked && (
                       <button
-                        className="btn btn-sm btn-primary unlock-btn"
+                        className="btn btn-sm btn-primary unlock-btn mt-1"
                         onClick={() => handleUnlock(seat)}
                       >
                         Unlock

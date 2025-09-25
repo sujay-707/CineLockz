@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 export default function PaymentPage() {
   const location = useLocation();
@@ -10,10 +9,7 @@ export default function PaymentPage() {
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [loading, setLoading] = useState(false);
 
-  // FIX: get user correctly
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  if (!movie || !selectedSeats || !selectedDate || !selectedTime || !user) {
+  if (!movie || !selectedSeats || !selectedDate || !selectedTime) {
     return (
       <div className="container text-center mt-5">
         <h3>Invalid Booking Data</h3>
@@ -24,31 +20,25 @@ export default function PaymentPage() {
     );
   }
 
-  const proceedPayment = async () => {
+  const proceedPayment = () => {
     setLoading(true);
-    try {
-      const ticketData = {
-        userId: user._id,
-        movieId: movie._id,
+
+    setTimeout(() => {
+      const ticket = {
+        movie,
         seats: selectedSeats,
         date: selectedDate,
         time: selectedTime,
         totalPrice,
-        movieName: movie.name,
-        userEmail: user.email,
         paymentMethod,
+        qrCodes: selectedSeats.map((s, i) => `TICKET-${s}-${Date.now() + i}`)
       };
 
-      const res = await axios.post("http://localhost:5000/api/tickets", ticketData);
-
-      // Navigate to ticket page
-      navigate("/ticket", { state: { ticket: res.data, movie } });
-    } catch (err) {
-      console.error(err);
-      alert(err.response?.data?.message || "Payment Failed!");
-    } finally {
+      localStorage.setItem("latestTicket", JSON.stringify(ticket));
       setLoading(false);
-    }
+
+      navigate("/ticket", { state: { ticket, movie } });
+    }, 1000);
   };
 
   return (

@@ -17,8 +17,7 @@ export default function SeatSelectionPage() {
     { type: "Silver", rows: ["D", "F"], price: 150, img: "/assets/seats/red-seat.png" },
   ];
 
-  const seatNumbers = [1,2,3,4,5,6,7,8,9,10]; // same as simulator
-
+  const seatNumbers = [1,2,3,4,5,6,7,8,9,10];
   const showTimes = ["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM", "10:00 PM"];
 
   if (!movie) {
@@ -53,6 +52,7 @@ export default function SeatSelectionPage() {
       alert("Select at least one seat, date, and time!");
       return;
     }
+
     navigate("/payment", {
       state: { movie, selectedSeats, selectedDate, selectedTime, totalPrice: getTotal() }
     });
@@ -62,28 +62,25 @@ export default function SeatSelectionPage() {
     <div className="seat-selection-page container mt-5">
       <h2 className="text-center mb-4">{movie.name} 🎬 - Select Seats</h2>
 
-     <h4 className="text-center mb-3">Select Date & Time</h4>
-<div className="d-flex justify-content-center gap-3 flex-wrap mb-3">
-  <input
-    type="date"
-    className="form-control w-auto"
-    value={selectedDate}
-    onChange={(e) => setSelectedDate(e.target.value)}
-  />
-  <select
-    className="form-select w-auto"
-    value={selectedTime}
-    onChange={(e) => setSelectedTime(e.target.value)}
-  >
-    <option value="">Select Show Time</option>
-    {showTimes.map(time => (
-      <option key={time} value={time}>{time}</option>
-    ))}
-  </select>
-</div>
+      <div className="d-flex justify-content-center gap-3 flex-wrap mb-3">
+        <input
+          type="date"
+          className="form-control w-auto"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+        />
+        <select
+          className="form-select w-auto"
+          value={selectedTime}
+          onChange={(e) => setSelectedTime(e.target.value)}
+        >
+          <option value="">Select Show Time</option>
+          {showTimes.map(time => (
+            <option key={time} value={time}>{time}</option>
+          ))}
+        </select>
+      </div>
 
-
-      
       {seatCategories.map(category => (
         <div key={category.type} className="mb-4">
           <h6>{category.type} Seats (₹{category.price})</h6>
@@ -112,7 +109,6 @@ export default function SeatSelectionPage() {
       ))}
 
       <div className="screen-label">--- Screen This Way ---</div>
-
 
       <div className="text-center mt-4">
         <p><strong>Total:</strong> ₹{getTotal()}</p>

@@ -1,11 +1,7 @@
-
 import React from "react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaApple, FaGooglePlay } from "react-icons/fa";
 
 export default function Footer() {
-  // Helper function to disable links
-  const disableLink = (e) => e.preventDefault();
-
   return (
     <footer className="bg-dark text-light py-4 border-top border-3 border-white">
       <div className="container">
@@ -15,10 +11,18 @@ export default function Footer() {
           <div className="col-md-4">
             <h5>About Us</h5>
             <ul className="list-unstyled">
-              <li><a href="#" onClick={disableLink} className="text-light text-decoration-none">Careers</a></li>
-              <li><a href="#" onClick={disableLink} className="text-light text-decoration-none">Contact Us</a></li>
-              <li><a href="#" onClick={disableLink} className="text-light text-decoration-none">FAQ</a></li>
-              <li><a href="#" onClick={disableLink} className="text-light text-decoration-none">Terms & Conditions</a></li>
+              <li>
+                <button className="btn btn-link text-light text-decoration-none p-0">Careers</button>
+              </li>
+              <li>
+                <button className="btn btn-link text-light text-decoration-none p-0">Contact Us</button>
+              </li>
+              <li>
+                <button className="btn btn-link text-light text-decoration-none p-0">FAQ</button>
+              </li>
+              <li>
+                <button className="btn btn-link text-light text-decoration-none p-0">Terms & Conditions</button>
+              </li>
             </ul>
           </div>
 
@@ -26,10 +30,10 @@ export default function Footer() {
           <div className="col-md-4 text-center">
             <h5>Follow Us</h5>
             <div className="d-flex justify-content-center gap-3 mt-2">
-              <a href="#" onClick={disableLink} className="text-light fs-4"><FaFacebookF /></a>
-              <a href="#" onClick={disableLink} className="text-light fs-4"><FaInstagram /></a>
-              <a href="#" onClick={disableLink} className="text-light fs-4"><FaTwitter /></a>
-              <a href="#" onClick={disableLink} className="text-light fs-4"><FaYoutube /></a>
+              <button className="btn btn-link text-light fs-4 p-0"><FaFacebookF /></button>
+              <button className="btn btn-link text-light fs-4 p-0"><FaInstagram /></button>
+              <button className="btn btn-link text-light fs-4 p-0"><FaTwitter /></button>
+              <button className="btn btn-link text-light fs-4 p-0"><FaYoutube /></button>
             </div>
           </div>
 
@@ -37,8 +41,8 @@ export default function Footer() {
           <div className="col-md-4 text-md-end text-center">
             <h5>Get The App</h5>
             <div className="d-flex justify-content-md-end justify-content-center gap-2 mt-2">
-              <a href="#" onClick={disableLink} className="text-light fs-4"><FaApple /> App Store</a>
-              <a href="#" onClick={disableLink} className="text-light fs-4"><FaGooglePlay /> Play Store</a>
+              <button className="btn btn-link text-light fs-4 p-0"><FaApple /> App Store</button>
+              <button className="btn btn-link text-light fs-4 p-0"><FaGooglePlay /> Play Store</button>
             </div>
           </div>
 
