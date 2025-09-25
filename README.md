@@ -56,10 +56,10 @@ Click any image to open its live page:
 [![Movies Page](./screenshots/front-page.png)](https://cinelockz.netlify.app/movies)  
 *Movies Page*  
 
-[![Seat Selection](./screenshots/seat-layout.png)](https://cinelockz.netlify.app/seat-selection)  
+[![Seat Selection](./screenshots/screenseatLayout.png)](https://cinelockz.netlify.app/seat-selection)  
 *Seat Selection*  
 
-[![Seat Unlocking](./screenshots/seat-simulator.png)](https://cinelockz.netlify.app/unlock-seat)  
+[![Seat Unlocking](./screenshots/seatsimulator.png)](https://cinelockz.netlify.app/unlock-seat)  
 *Seat Unlocking / Seat Simulator*  
 
 [![Ticket QR](./screenshots/ticket.png)](https://cinelockz.netlify.app/ticket)  
