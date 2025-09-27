@@ -39,15 +39,16 @@ export default function PaymentPage() {
       <h2 className="text-center mb-4">Payment for {movie.name}</h2>
 
       <h4>Select Payment Method</h4>
-      <select
-        className="form-select mb-3"
-        value={paymentMethod}
-        onChange={(e) => setPaymentMethod(e.target.value)}
-      >
-        <option value="card">Card</option>
-        <option value="upi">UPI</option>
-        <option value="netbanking">Netbanking</option>
-      </select>
+<select
+  className="form-select"
+  style={{ width: "150px", padding: "4px 8px", fontSize: "0.9rem" }}
+  value={paymentMethod}
+  onChange={(e) => setPaymentMethod(e.target.value)}
+>
+  <option value="card">Card</option>
+  <option value="upi">UPI</option>
+  <option value="netbanking">Netbanking</option>
+</select>
 
       {paymentMethod === "card" && (
         <CreditCardForm onSubmit={proceedPayment} />
