@@ -1,26 +1,19 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import CreditCardForm from "./CreditCardForm";
 
 export default function PaymentPage() {
   const location = useLocation();
   const navigate = useNavigate();
-
   const { movie, selectedSeats, selectedDate, selectedTime, totalPrice } = location.state || {};
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [loading, setLoading] = useState(false);
 
-  if (!movie || !selectedSeats || !selectedDate || !selectedTime) {
-    return (
-      <div className="container text-center mt-5">
-        <h3>Invalid Booking Data</h3>
-        <button className="btn btn-primary mt-3" onClick={() => navigate("/movies")}>
-          Back to Movies
-        </button>
-      </div>
-    );
+  if (!movie) {
+    return <div className="container text-center mt-5">Invalid Booking</div>;
   }
 
-  const proceedPayment = () => {
+  const proceedPayment = (cardDetails) => {
     setLoading(true);
 
     setTimeout(() => {
@@ -31,12 +24,12 @@ export default function PaymentPage() {
         time: selectedTime,
         totalPrice,
         paymentMethod,
+        cardDetails,
         qrCodes: selectedSeats.map((s, i) => `TICKET-${s}-${Date.now() + i}`)
       };
 
       localStorage.setItem("latestTicket", JSON.stringify(ticket));
       setLoading(false);
-
       navigate("/ticket", { state: { ticket, movie } });
     }, 1000);
   };
@@ -56,12 +49,18 @@ export default function PaymentPage() {
         <option value="netbanking">Netbanking</option>
       </select>
 
-      <div className="text-center mt-3">
-        <p><strong>Total:</strong> ₹{totalPrice}</p>
-        <button className="btn btn-success w-50" onClick={proceedPayment} disabled={loading}>
-          {loading ? "Processing..." : "Pay Now"}
-        </button>
-      </div>
+      {paymentMethod === "card" && (
+        <CreditCardForm onSubmit={proceedPayment} />
+      )}
+
+      {paymentMethod !== "card" && (
+        <div className="text-center">
+          <p><strong>Total:</strong> ₹{totalPrice}</p>
+          <button className="btn btn-success w-50" onClick={() => proceedPayment()}>
+            {loading ? "Processing..." : "Pay Now"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
